@@ -18,33 +18,32 @@ do {
   console.log(`Encuestas registradas: ${totalEncuestas}`);
   console.log("\n");
 
-  preguntas = prompt(`Digite la pregunta de la encuesta\no presione\n<T> para terminar`);
+  preguntas = prompt(`Digite la PREGUNTA nro. ${totalEncuestas + 1} de la ENCUESTA\nsino presione\n<ENTER> para TERMINAR`);
 
-  if (preguntas !== "T" && preguntas !== "t"){
-    let index = 0;
-    let salida = false;
-    respuestas = [];
+  if (preguntas !== null && preguntas !== ""){
+    index = 1;
+    salida = false;
 
     do {
-      i = index;
-      index++;
-      respuestas [i] = prompt(`Ingrese la respuesta para la\nopcion ${index}\no presione\n<ENTER> para volver a realizar la encuesta`);
-      if (respuestas [i] == null || respuestas [i] == " "){
-        let salida = true;
-      } 
-    } while (index < 4 || salida == true)
+      respuestas [index - 1] = prompt(`Ingrese la RESPUESTA para la\nOPCION ${index}\na la PREGUNTA: ${preguntas}\nsino presione\n<ENTER> para volver a realizar la PREGUNTA`);
+      
+      if (respuestas [index - 1] === null || respuestas [index - 1] === ""){
+         salida = true;
+      } else {
+        index++;
+      }
+    } while (index <= 4 && salida == false)
 
     if (salida == false) {  
       do {
-        opcionCorrectas = parseInt(prompt(`Ingrese la opción correcta (1, 2, 3, 4)\no presione\n<0> para volver a realizar la encuesta`));
-      } while (opcionCorrectas < 0 || opcionCorrectas > 4);
+        opcionCorrectas = parseInt(prompt(`Ingrese la opción correcta de la PREGUNTA: ${preguntas}\n1 -> ${respuestas[0]}\n2 -> ${respuestas[1]}\n3 -> ${respuestas[2]}\n4 -> ${respuestas[3]}\nsino presione\n<ENTER> para volver a realizar la PREGUNTA`));
+      } while (opcionCorrectas < 1 || opcionCorrectas > 4);
 
-      if (opcionCorrectas !== 0){
-         totalEncuestas++;
+      if (opcionCorrectas !== null && opcionCorrectas !== ""){
          encuestas.push (new Encuesta (preguntas, respuestas, opcionCorrectas, 0));
-         console.log (encuestas [1]);
+         totalEncuestas++;
       } 
     }
   }
-} while (preguntas !== "T" && preguntas !== "t");
+} while (preguntas !== null && preguntas !== "");
 
