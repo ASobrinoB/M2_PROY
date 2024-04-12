@@ -37,15 +37,12 @@ do {
          totalEncuestas++;
       };
     }
-  } 
-  
-  if (preguntas !== null && preguntas !== ""){
-     if (totalEncuestas < 8){
-       alerta = prompt(`Debe ingresar al menos 8 preguntas para la encuesta\n\n¿Esta seguro que desea TERMINAR?\n\nDigite SI y presione ENTER o ACEPTAR para TERMINAR`);
-       alerta = alerta.toUpperCase ();
-      }
+  } else {
+          if (totalEncuestas < 8){
+            alerta = prompt(`Debe ingresar al menos 8 preguntas para la encuesta\n\n¿Esta seguro que desea TERMINAR?\n\nDigite SI y presione ENTER o ACEPTAR para TERMINAR`);
+            alerta = alerta.toUpperCase ();
+          }
   }
-
 } while (preguntas !== null && preguntas !== "" && alerta !== "SI")
 
 for (index = 0; index < totalEncuestas; index++){
