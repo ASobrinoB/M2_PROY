@@ -33,21 +33,37 @@ class Encuesta {
     if (!pregunta) return null;
 
     let respuestas = [];
+
     for (let index = 0; index < 4; index++) {
       let respuesta = prompt(`Digite la alternativa (${index + 1}.) de la pregunta\n¿${pregunta}?\n\n1. ${respuestas[0]}\n2. ${respuestas[1]}\n3. ${respuestas[2]}\n4. ${respuestas[3]}\n\ny presione el botón ACEPTAR o presione el botón CANCELAR para ingresar la pregunta nuevamente`);
+
       if (!respuesta) return null;
+
       respuestas.push(respuesta);
     }
 
-    let opcionCorrecta;
+    let opcionCorrecta = 0;
+
     do {
-      let opcionCorrecta = parseInt(prompt(`Digite la alternativa correcta de la pregunta\n¿${pregunta}?\n\n1. ${respuestas[0]}\n2. ${respuestas[1]}\n3. ${respuestas[2]}\n4. ${respuestas[3]}\n\ny presione el botón ACEPTAR o presione el botón CANCELAR para ingresar la pregunta nuevamente`));
+      opcionCorrecta = parseInt(prompt(`Digite la alternativa correcta de la pregunta\n¿${pregunta}?\n\n1. ${respuestas[0]}\n2. ${respuestas[1]}\n3. ${respuestas[2]}\n4. ${respuestas[3]}\n\ny presione el botón ACEPTAR o presione el botón CANCELAR para ingresar la pregunta nuevamente`));
+
       if (!opcionCorrecta) return null;
+
     } while (opcionCorrecta < 1 || opcionCorrecta > 4);
 
     let opcionUsuario = 0;
 
     return [pregunta, respuestas, opcionCorrecta, opcionUsuario];
+  }
+
+  obtenerOpcionUsuario(index) {
+    do {
+      this.encuestas.opcionUsuario [index] = parseInt(prompt(`Digite la alternativa correcta de la pregunta\n¿${this.pregunta}?\n\n1. ${this.respuestas[0]}\n2. ${this.respuestas[1]}\n3. ${this.respuestas[2]}\n4. ${this.respuestas[3]}\n\ny presione el botón ACEPTAR o presione el botón CANCELAR para ingresar la pregunta nuevamente`));
+      if (!this.encuestas.opcionUsuario [index]) {
+        this.encuestas.opcionUsuario [index] = 0; 
+        return;
+      };
+    } while (this.encuestas.opcionUsuario [index] < 1 || this.encuestas.opcionUsuario [index] > 4);
   }
 
   mostrarEncuestas() {
@@ -70,13 +86,8 @@ while (encuesta.totalEncuestas < cantidadMinima){
   encuesta.iniciar();  
 }
 
-if (encuesta.totalEncuestas >= cantidadMinima) {
-  for (let index = 0; index < encuesta.totalEncuestas; index++) {
-      do {
-        encuesta.opcionUsuario[index] = parseInt(prompt(`¿${encuesta.pregunta[index]}?\n\n1. ${encuesta.respuestas[index][0]}\n2. ${encuesta.respuestas[index][1]}\n3. ${encuesta.respuestas[index][2]}\n4. ${encuesta.respuestas[index][3]}\n\nIngrese la alternativa correcta y presione el botón ACEPTAR o presione el botón CANCELAR para salir`));
-        if (!encuesta.opcionUsuario[index]){
-          encuesta.opcionUsuario[index] = 0;
-        }
-      } while (encuesta.opcionUsuario[index] < 1 || encuesta.opcionUsuario[index] > 4);
-    }
-    };
+if (encuesta.totalEncuestas >= cantidadMinima){
+   for (let index = 0; index < encuesta.totalEncuestas; index++) {
+       encuesta.obtenerOpcionUsuario (index);
+}
+}
