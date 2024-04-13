@@ -1,71 +1,82 @@
+const cantidadMinima = 2
+
 class Encuesta {
-  constructor(pregunta, respuesta, opcionCorrecta) {
-    this.pregunta = pregunta;
-    this.respuesta = respuesta;
-    this.opcionCorrecta = opcionCorrecta;
+  constructor() {
+    this.totalEncuestas = 0;
+    this.encuestas = [];
+  }
+
+  agregarPregunta(pregunta, respuestas, opcionCorrecta, opcionUsuario) {
+    this.encuestas.push({
+      pregunta: pregunta,
+      respuestas: respuestas,
+      opcionCorrecta: opcionCorrecta,
+      opcionUsuario: opcionUsuario
+    });
+    this.totalEncuestas++;
+  }
+
+  iniciar() {
+    let preguntas;
+    do {
+      preguntas = this.obtenerPregunta();
+      if (preguntas) {
+        this.agregarPregunta(...preguntas);
+      }
+    } while (preguntas);
+    this.mostrarEncuestas();
+  }
+
+  obtenerPregunta() {
+    let pregunta = prompt(`Digite la pregunta ${this.totalEncuestas + 1} de ${cantidadMinima} para llenar la encuesta y presione el botón ACEPTAR\n\no presione el botón CANCELAR para salir del ingreso de la encuesta`);
+
+    if (!pregunta) return null;
+
+    let respuestas = [];
+    for (let index = 0; index < 4; index++) {
+      let respuesta = prompt(`Digite la alternativa (${index + 1}.) de la pregunta\n¿${pregunta}?\n\n1. ${respuestas[0]}\n2. ${respuestas[1]}\n3. ${respuestas[2]}\n4. ${respuestas[3]}\n\ny presione el botón ACEPTAR o presione el botón CANCELAR para ingresar la pregunta nuevamente`);
+      if (!respuesta) return null;
+      respuestas.push(respuesta);
+    }
+
+    let opcionCorrecta;
+    do {
+      let opcionCorrecta = parseInt(prompt(`Digite la alternativa correcta de la pregunta\n¿${pregunta}?\n\n1. ${respuestas[0]}\n2. ${respuestas[1]}\n3. ${respuestas[2]}\n4. ${respuestas[3]}\n\ny presione el botón ACEPTAR o presione el botón CANCELAR para ingresar la pregunta nuevamente`));
+      if (!opcionCorrecta) return null;
+    } while (opcionCorrecta < 1 || opcionCorrecta > 4);
+
+    let opcionUsuario = 0;
+
+    return [pregunta, respuestas, opcionCorrecta, opcionUsuario];
+  }
+
+  mostrarEncuestas() {
+    console.log(`Total de preguntas ingresadas: ${this.totalEncuestas}`);
+    for (let index = 0; index < this.totalEncuestas; index++) {
+      console.log(this.encuestas[index]);
+    }
   }
 }
 
-var totalEncuestas = 0;
-var encuestas = [];
+let encuesta = new Encuesta();
+encuesta.iniciar();
 
-do {
-  var preguntas = "";
-  var alertas = "";
-  var respuestas = ["", "", "", ""];
-  var opcionCorrectas = 0;
-  
-  preguntas = prompt(`Digite la PREGUNTA número ${totalEncuestas + 1} de la encuesta\n\npresione ENTER o el botón CANCELAR para TERMINAR\n`);
-/*  alert (preguntas);*/
+while (encuesta.totalEncuestas < cantidadMinima){
+    alertas = prompt(`ADVERTENCIA\nHa ingresado ${encuesta.totalEncuestas} de ${cantidadMinima} preguntas\n\n¿Está seguro que desea salir?\n\nDigite SI y presione ENTER o ACEPTAR para salir`);
 
-  if (preguntas !== null && preguntas !== ""){  
-     respuestas = ["", "", "", ""];
-          
-     for (let index = 0; index < 4; index++){
-         respuestas[index] = prompt(`Digite la RESPUESTA para la opción [${index + 1}] a la pregunta:\n\n¿${preguntas}?\n\nopción 1 -> ${respuestas[0]}\nopción 2 -> ${respuestas[1]}\nopción 3 -> ${respuestas[2]}\nopción 4 -> ${respuestas[3]}\n\npresione ENTER o el botón CANCELAR\npara volver a la PREGUNTA de la encuesta\n`);
-/*         alert (respuestas[index]);*/
-             
-         if (respuestas[index] === null || respuestas[index] === ""){
-            break;
-         }
-     }
-
-     if (respuestas[3] !== null && respuestas[3] !== ""){  
-        do {
-          opcionCorrectas = parseInt(prompt(`Digite la OPCION donde se encuentra\nla RESPUESTA CORRECTA a la pregunta:\n\n¿${preguntas}?\n\nopción 1 -> ${respuestas[0]}\nopción 2 -> ${respuestas[1]}\nopción 3 -> ${respuestas[2]}\nopción 4 -> ${respuestas[3]}\n\npresione ENTER o el botón CANCELAR\npara volver a la PREGUNTA de la encuesta\n`));
-        } while (opcionCorrectas < 1 || opcionCorrectas > 4)
-
-/*        alert (opcionCorrectas);*/
-
-        if (opcionCorrectas >= 1 && opcionCorrectas <= 4){
-           encuestas.push(new Encuesta(preguntas, respuestas, opcionCorrectas));
-           totalEncuestas++;
-
-/*           alert (totalEncuestas)*/
-         }
-      }
-   } else {
-        if (totalEncuestas <= 8){
-           alertas = prompt(`Debe ingresar al menos 8 preguntas para la encuesta\n\n¿Está seguro que desea TERMINAR?\n\nDigite SI y presione ENTER o ACEPTAR para TERMINAR`);
-/*           alert (alertas);*/
-
-           if (alertas === null){
-              preguntas = "volver al do-while";
-/*              alert (preguntas);*/
-            } else {
-              alertas = alertas.toUpperCase()
-              if (alertas !== "SI"){
-                preguntas = "volver al do-while";
-/*                alert (preguntas);*/
-              }
-            }
-           }           
-   }
-   
-/*   alert (preguntas);*/
-
-} while (preguntas !== null && preguntas !== "")
-
-for (let index = 0; index < totalEncuestas; index++){
-    console.log(encuestas[index]);
+    if (alertas === "SI"){
+       break;
+    }
+  encuesta.iniciar();  
 }
+
+if (encuesta.totalEncuestas >= cantidadMinima) {
+  for (let index = 0; index < encuesta.totalEncuestas; index++) {
+      do {
+        encuesta.opcionUsuario[index] = parseInt(prompt(`¿${encuesta.pregunta[index]}?\n\n1. ${encuesta.respuestas[index][0]}\n2. ${encuesta.respuestas[index][1]}\n3. ${encuesta.respuestas[index][2]}\n4. ${encuesta.respuestas[index][3]}\n\nIngrese la alternativa correcta y presione el botón ACEPTAR o presione el botón CANCELAR para salir`));
+        if (!encuesta.opcionUsuario[index]){
+          encuesta.opcionUsuario[index] = 0;
+        }
+      } while (encuesta.opcionUsuario[index] < 1 || encuesta.opcionUsuario[index] > 4);
+    }
+    };
