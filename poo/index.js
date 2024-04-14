@@ -56,15 +56,19 @@ class Encuesta {
     return [pregunta, respuestas, opcionCorrecta, opcionUsuario];
   }
 
-  obtenerOpcionUsuario(index) {
-    do {
-      this.encuestas.opcionUsuario [index] = parseInt(prompt(`Digite la alternativa correcta de la pregunta\n¿${this.pregunta}?\n\n1. ${this.respuestas[0]}\n2. ${this.respuestas[1]}\n3. ${this.respuestas[2]}\n4. ${this.respuestas[3]}\n\ny presione el botón ACEPTAR o presione el botón CANCELAR para ingresar la pregunta nuevamente`));
-      if (!this.encuestas.opcionUsuario [index]) {
-        this.encuestas.opcionUsuario [index] = 0; 
-        return;
-      };
-    } while (this.encuestas.opcionUsuario [index] < 1 || this.encuestas.opcionUsuario [index] > 4);
-  }
+  obtenerOpcionUsuario() {
+        this.encuesta.forEach (element => {
+
+/*          do {
+            element.opcionUsuario = parseInt(prompt(`Digite la alternativa correcta de la pregunta\n¿${element.pregunta}?\n\n1. ${element.respuestas[0]}\n2. ${element.respuestas[1]}\n3. ${element.respuestas[2]}\n4. ${element.respuestas[3]}\n\ny presione el botón ACEPTAR o presione el botón CANCELAR para ingresar la pregunta nuevamente`));
+            if (!element.opcionUsuario) {
+              element.opcionUsuario = 0;
+              return;
+            };
+          } while (element.opcionUsuario < 1 || element.opcionUsuario > 4);
+                this.opcionUsuario[index] = opcionUsuario; 
+        })*/
+}
 
   mostrarEncuestas() {
     console.log(`Total de preguntas ingresadas: ${this.totalEncuestas}`);
@@ -86,8 +90,4 @@ while (encuesta.totalEncuestas < cantidadMinima){
   encuesta.iniciar();  
 }
 
-if (encuesta.totalEncuestas >= cantidadMinima){
-   for (let index = 0; index < encuesta.totalEncuestas; index++) {
-       encuesta.obtenerOpcionUsuario (index);
-}
-}
+encuesta.obtenerOpcionUsuario();  
