@@ -28,10 +28,13 @@ class Encuesta {
   }
 
   obtenerPregunta() {
-    let pregunta = prompt(`Digite la pregunta ${this.totalEncuestas + 1} de ${cantidadMinima} para llenar la encuesta y presione el botón ACEPTAR\n\no presione el botón CANCELAR para salir del ingreso de la encuesta`);
-
+    let texto = "Digite la pregunta " + (this.totalEncuestas + 1) + " de " + cantidadMinima + " para llenar la encuesta y presione el botón ACEPTAR\n\no presione el botón CANCELAR para salir del ingreso de la encuesta";
+    if (this.totalEncuestas + 1 >= cantidadMinima){
+      texto = "Digite la pregunta " + (this.totalEncuestas + 1) + " para llenar la encuesta y presione el botón ACEPTAR\n\no presione el botón CANCELAR para salir del ingreso de la encuesta";
+    }
+    let pregunta = prompt(texto);
     if (!pregunta) return null;
-
+    
     let respuestas = [];
 
     for (let index = 0; index < 4; index++) {
@@ -57,18 +60,15 @@ class Encuesta {
   }
 
   obtenerOpcionUsuario() {
-        this.encuesta.forEach (element => {
-
-/*          do {
-            element.opcionUsuario = parseInt(prompt(`Digite la alternativa correcta de la pregunta\n¿${element.pregunta}?\n\n1. ${element.respuestas[0]}\n2. ${element.respuestas[1]}\n3. ${element.respuestas[2]}\n4. ${element.respuestas[3]}\n\ny presione el botón ACEPTAR o presione el botón CANCELAR para ingresar la pregunta nuevamente`));
+        this.encuestas.forEach (element => {console.log(element.opcionUsuario);
+          do {
+            element.opcionUsuario = parseInt(prompt(`Digite la alternativa correcta de la pregunta\n¿${element.pregunta}?\n\n1. ${element.respuestas[0]}\n2. ${element.respuestas[1]}\n3. ${element.respuestas[2]}\n4. ${element.respuestas[3]}\n\ny presione el botón ACEPTAR o presione el botón CANCELAR para salir de la encuesta`));
             if (!element.opcionUsuario) {
               element.opcionUsuario = 0;
               return;
             };
           } while (element.opcionUsuario < 1 || element.opcionUsuario > 4);
-                this.opcionUsuario[index] = opcionUsuario; 
-        })*/
-}
+        })}
 
   mostrarEncuestas() {
     console.log(`Total de preguntas ingresadas: ${this.totalEncuestas}`);
@@ -90,4 +90,4 @@ while (encuesta.totalEncuestas < cantidadMinima){
   encuesta.iniciar();  
 }
 
-encuesta.obtenerOpcionUsuario();  
+encuesta.obtenerOpcionUsuario();
