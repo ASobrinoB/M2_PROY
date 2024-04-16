@@ -1,4 +1,4 @@
-const cantidadMinima = 2;
+const cantidadMinima = 8;
 
 class Votacion {
   constructor() {
@@ -141,11 +141,11 @@ votacion.preguntas.forEach(element => {
     contador[elementVoto]++;
   });
 
-  let texto0 = "A la pregunta ¿" + element.pregunta + "?";
-  let texto1 = "\nLa alternativa (1) " + element.respuestas[0] + " tiene " + (contador[1] || 0) + " votos";
-  let texto2 = "\nLa alternativa (2) " + element.respuestas[1] + " tiene " + (contador[2] || 0) + " votos"; 
-  let texto3 = "\nLa alternativa (3) " + element.respuestas[2] + " tiene " + (contador[3] || 0) + " votos";
-  let texto4 = "\nLa alternativa (4) " + element.respuestas[3] + " tiene " + (contador[4] || 0) + " votos";
+  let texto0 = "A la pregunta\n\n¿" + element.pregunta + "?";
+  let texto1 = "\n\nLa alternativa (1) " + element.respuestas[0] + " tiene " + (contador[1] || 0) + " votos";
+  let texto2 = "\n\nLa alternativa (2) " + element.respuestas[1] + " tiene " + (contador[2] || 0) + " votos"; 
+  let texto3 = "\n\nLa alternativa (3) " + element.respuestas[2] + " tiene " + (contador[3] || 0) + " votos";
+  let texto4 = "\n\nLa alternativa (4) " + element.respuestas[3] + " tiene " + (contador[4] || 0) + " votos";
 
   alert(texto0 + texto1 + texto2 + texto3 + texto4);
 });
