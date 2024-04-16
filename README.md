@@ -62,11 +62,11 @@ En el codigo JavaScript se implementacion 3 procesos para resolver el enunciado
 
 - En este proceso se definió una constante que contine la cantidad minima de preguntas a ingresar
 
-![Image](./imagenes/cantidad minima.png) 
+![Image](./imagenes/cantidadminima.png) 
 
 - Para la POO se definió una clase y sus metodos asociados
 
-![Image](./imagenes/clases y metodos.png) 
+![Image](./imagenes/clasesymetodos.png) 
 
 - Para la PF se definió un objeto y se definieron funciones
 
@@ -78,13 +78,13 @@ En el codigo JavaScript se implementacion 3 procesos para resolver el enunciado
 
 En las siguientes imagenes se muestra el bucle usado en la POO
 
-![Image](./imagenes/bucle1 poo.png) 
-![Image](./imagenes/bucle2 poo.png) 
-![Image](./imagenes/bucle3 poo.png) 
+![Image](./imagenes/bucle1poo.png) 
+![Image](./imagenes/bucle2poo.png) 
+![Image](./imagenes/bucle3poo.png) 
 
 A diferencia de POO en la PF el bucle lo contienen las funciones
 
-![Image](./imagenes/bucle pf.png) 
+![Image](./imagenes/buclepf.png) 
 
 ****
 
@@ -92,11 +92,18 @@ A diferencia de POO en la PF el bucle lo contienen las funciones
 
 En la siguiente imagen se muestra la ejecución 
 
-![Image](./imagenes/EjecucionPseudocodigo.png) 
+- Ingreso de las preguntas
 
-En la siguiente imagen se muestran los datos resultantes
+![Image](./imagenes/ejecucion1.png)
 
-![Image](./imagenes/DespliegueResultadoFiinal.png) 
+- Ingreso de la votación
+
+![Image](./imagenes/ejecucion2.png) 
+
+- Resumen de las votaciones
+
+![Image](./imagenes/ejecucion3.png) 
+
 
 ****
 
